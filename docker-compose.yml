@@ -1,0 +1,25 @@
+version: "3.8"
+
+services:
+  frontend:
+    image: "julianlechner/dj-frontend:latest"
+    container_name: "frontend"
+    ports:
+      - "80:3000"
+    labels:
+      com.centurylinklabs.watchtower.enable: "true"
+  fastapi:
+    image: "julianlechner/dj-backend:latest"
+    container_name: fastapi
+    ports:
+      - "8000:8000"
+    labels:
+      com.centurylinklabs.watchtower.enable: "true"
+
+  watchtower:
+    image: containrrr/watchtower
+    container_name: watchtower
+    command: --interval 30 --label-enable --cleanup
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+    restart: always
