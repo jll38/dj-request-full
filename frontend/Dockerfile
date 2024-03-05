@@ -1,28 +1,26 @@
 # pull official base image
-FROM oven/bun:latest
+FROM node:18-alpine
 
 # set working directory
 WORKDIR /app
 
 # Copies package.json and package-lock.json to Docker environment
-COPY package*.json bun.lockb* ./
+COPY package*.json bun.lockb* tsconfig.json* ./
 
 
-RUN bun install -g serve
+RUN npm install -g serve
 
 # Installs all node packages
-RUN bun install
+RUN npm install
 
 # Copies everything over to Docker environment
 COPY . .
 
-RUN bun run build
-
-
+RUN npm run build --verbose
 
 # Uses port which is used by the actual application
 EXPOSE 3000
 
 # Run application
 #CMD [ "npm", "start" ]
-CMD ["bunx", "serve", "-s", "build", "-l", "3000"]
+CMD ["npx", "serve", "-s", "build", "-l", "3000"]
