@@ -1,0 +1,10 @@
+
+
+@keyframes spreadLetters {
+    from {
+      letter-spacing: 0.1rem;
+    }
+    to {
+      letter-spacing: 0.3rem;
+    }
+  }
