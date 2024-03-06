@@ -6,5 +6,9 @@ body {
 #root {
   background-color: #050315;
   height: 100vh;
-  border: 2px solid red
+  
+}
+
+main{
+  padding: 0 4rem;
 }

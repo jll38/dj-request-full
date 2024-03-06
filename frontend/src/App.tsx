@@ -3,6 +3,10 @@ import logo from "./logo.svg";
 import Navbar from "./components/shared/Navbar";
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import "./App.css";
+
+//Pages
+import Home from "./pages/Home"
+
 import {
   createBrowserRouter,
   RouterProvider,
@@ -28,10 +32,7 @@ function App() {
     {
       path: "/",
       element: (
-        <div>
-          <h1>TuneToss</h1>
-          <Link to="about">Home</Link>
-        </div>
+       <Home/>
       ),
     },
     {
