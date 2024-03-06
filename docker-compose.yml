@@ -8,6 +8,7 @@ services:
       - "80:3000"
     labels:
       com.centurylinklabs.watchtower.enable: "true"
+
   fastapi:
     image: "julianlechner/dj-backend:latest"
     container_name: fastapi
@@ -33,5 +34,18 @@ services:
       - /var/run/docker.sock:/var/run/docker.sock
     restart: always
 
+  rabbitmq:
+    image: "rabbitmq:3-management"
+    container_name: rabbitmq
+    ports:
+      - "5672:5672" # AMQP protocol
+      - "15672:15672" # Management interface
+    environment:
+      RABBITMQ_DEFAULT_USER: ${RABBITMQ_DEFAULT_USER}
+      RABBITMQ_DEFAULT_PASS: ${RABBITMQ_DEFAULT_PASS}
+    volumes:
+      - rabbitmq-data:/var/lib/rabbitmq
+
 volumes:
   tunetoss-data:
+  rabbitmq-data:
