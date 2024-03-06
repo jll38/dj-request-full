@@ -47,11 +47,13 @@ function App() {
   ]);
 
   return (
-    <div className="App">
+    <ThemeProvider theme={theme}>
+      <div className="App">
       <Navbar/>
       <RouterProvider router={router} />
       <div></div>
     </div>
+    </ThemeProvider>
   );
 }
 
